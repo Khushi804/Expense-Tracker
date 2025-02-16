@@ -53,10 +53,10 @@ public class CLIManager {
                     viewTotalExpenses();
                     break;
                 case 9:
-                    System.out.println("📌 Exiting... Thank you!");
+                    System.out.println("Exiting... Thank you!");
                     return;
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println("Invalid option. Try again.");
             }
         }
     }
@@ -77,15 +77,15 @@ public class CLIManager {
 
         Expense expense = new Expense(0, amount, category, date, description);
         expenseDAO.addExpense(expense);
-        System.out.println("✅ Expense added successfully!");
+        System.out.println(" Expense added successfully!");
     }
 
     private void viewExpenses() {
         List<Expense> expenses = expenseDAO.getAllExpenses();
         if (expenses.isEmpty()) {
-            System.out.println("⚠ No expenses recorded.");
+            System.out.println("No expenses recorded.");
         } else {
-            System.out.println("\n📜 All Expenses:");
+            System.out.println("\n  All Expenses:");
             for (Expense exp : expenses) {
                 System.out.println(exp);
             }
@@ -97,7 +97,7 @@ public class CLIManager {
         int id = scanner.nextInt();
         scanner.nextLine();
         expenseDAO.deleteExpense(id);
-        System.out.println("🗑 Expense deleted.");
+        System.out.println(" Expense deleted.");
     }
 
     private void editExpense() {
@@ -108,7 +108,7 @@ public class CLIManager {
         // Fetch existing record to modify only selected fields
         Expense existingExpense = expenseDAO.getExpenseById(id);
         if (existingExpense == null) {
-            System.out.println("❌ Expense ID not found!");
+            System.out.println(" Expense ID not found!");
             return;
         }
 
@@ -122,7 +122,7 @@ public class CLIManager {
             System.out.print("Choose an option: ");
 
             int opt = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (opt) {
                 case 1:
@@ -147,13 +147,13 @@ public class CLIManager {
                     expenseDAO.updateSingleField(id, "description", newDescription);
                     break;
                 case 5:
-                    System.out.println("✅ Editing complete. Returning to menu.");
+                    System.out.println(" Editing complete. Returning to menu.");
                     return; // Exit loop
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println(" Invalid option. Try again.");
             }
 
-            System.out.println("✅ Field updated successfully!");
+            System.out.println(" Field updated successfully!");
         }
     }
 
@@ -163,9 +163,9 @@ public class CLIManager {
 
         List<Expense> expenses = expenseDAO.getExpensesByCategory(category);
         if (expenses.isEmpty()) {
-            System.out.println("⚠ No expenses found in this category.");
+            System.out.println(" No expenses found in this category.");
         } else {
-            System.out.println("\n📜 Expenses in category '" + category + "':");
+            System.out.println("\n  Expenses in category '" + category + "':");
             for (Expense exp : expenses) {
                 System.out.println(exp);
             }
@@ -179,7 +179,7 @@ public class CLIManager {
         String year = scanner.nextLine();
 
         double totalExpense = expenseDAO.getMonthlyExpenseSummary(month, year);
-        System.out.println("💰 Total expense for " + month + "/" + year + ": ₹" + totalExpense);
+        System.out.println(" Total expense for " + month + "/" + year + ": ₹" + totalExpense);
     }
 
     private void viewMonthlyExpenseRecords() {
@@ -190,9 +190,9 @@ public class CLIManager {
 
         List<Expense> expenses = expenseDAO.getMonthlyExpenseRecords(month, year);
         if (expenses.isEmpty()) {
-            System.out.println("⚠ No expenses recorded for this month.");
+            System.out.println(" No expenses recorded for this month.");
         } else {
-            System.out.println("\n📜 Expense Records for " + month + "/" + year + ":");
+            System.out.println("\n  Expense Records for " + month + "/" + year + ":");
             for (Expense exp : expenses) {
                 System.out.println(exp);
             }
@@ -201,6 +201,6 @@ public class CLIManager {
 
     private void viewTotalExpenses() {
         double total = expenseDAO.getTotalExpenses();
-        System.out.println("\n📊 Total expenses (all time): ₹" + total);
+        System.out.println("\n Total expenses (all time): ₹" + total);
     }
 }

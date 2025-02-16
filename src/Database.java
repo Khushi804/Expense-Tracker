@@ -10,11 +10,11 @@ public class Database {
             Class.forName("org.sqlite.JDBC");
 
             conn = DriverManager.getConnection(URL);
-            System.out.println("✅ Database connected successfully.");
+            System.out.println(" Database connected successfully.");
         } catch (ClassNotFoundException e) {
-            System.out.println("❌ SQLite JDBC driver not found: " + e.getMessage());
+            System.out.println(" SQLite JDBC driver not found: " + e.getMessage());
         } catch (SQLException e) {
-            System.out.println("❌ Database connection error: " + e.getMessage());
+            System.out.println(" Database connection error: " + e.getMessage());
         }
         return conn;
     }
@@ -31,12 +31,12 @@ public class Database {
              Statement stmt = conn.createStatement()) {
             if (conn != null) {
                 stmt.execute(sql);
-                System.out.println("✅ Table created successfully.");
+                System.out.println(" Table created successfully.");
             } else {
-                System.out.println("❌ Database connection failed.");
+                System.out.println(" Database connection failed.");
             }
         } catch (SQLException e) {
-            System.out.println("❌ Table creation error: " + e.getMessage());
+            System.out.println(" Table creation error: " + e.getMessage());
         }
     }
 
